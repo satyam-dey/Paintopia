@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icon.webp"/>
+    <title>Paintopia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Desktop Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="app-title">
+                    <span class="title-icon"><img src="icon.webp" alt="" style="height: 2rem;"></span>
+                    Paintopia
+                </h1>
+            </div>
+
+            <div class="tool-group">
+                <h3>Drawing Tools</h3>
+                <div class="tool-buttons">
+                    <button class="tool-btn active" data-tool="pen" title="Pen (P)">
+                        <span class="tool-icon">✏️</span>
+                        <span class="tool-label">Pen</span>
+                    </button>
+                    <button class="tool-btn" data-tool="brush" title="Brush (B)">
+                        <span class="tool-icon">🖌️</span>
+                        <span class="tool-label">Brush</span>
+                    </button>
+                    <button class="tool-btn" data-tool="eraser" title="Eraser (E)">
+                        <span class="tool-icon">🧽</span>
+                        <span class="tool-label">Eraser</span>
+                    </button>
+                    <button class="tool-btn" data-tool="fill" title="Fill Tool (F)">
+                        <span class="tool-icon">🪣</span>
+                        <span class="tool-label">Fill</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tool-group">
+                <h3>Shape Tools</h3>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-tool="line" title="Line (L)">
+                        <span class="tool-icon">📏</span>
+                        <span class="tool-label">Line</span>
+                    </button>
+                    <button class="tool-btn" data-tool="rectangle" title="Rectangle (R)">
+                        <span class="tool-icon">⬜</span>
+                        <span class="tool-label">Rectangle</span>
+                    </button>
+                    <button class="tool-btn" data-tool="circle" title="Circle (C)">
+                        <span class="tool-icon">⭕</span>
+                        <span class="tool-label">Circle</span>
+                    </button>
+                    <button class="tool-btn" data-tool="triangle" title="Triangle (T)">
+                        <span class="tool-icon">🔺</span>
+                        <span class="tool-label">Triangle</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tool-group">
+                <h3>Colors & Fill</h3>
+                <div class="color-section">
+                    <div class="color-picker-row">
+                        <div class="color-picker-item">
+                            <label>Stroke Color</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="strokeColor" class="color-input" value="#2563eb">
+                                <div class="color-preview" id="strokePreview"></div>
+                            </div>
+                        </div>
+                        <div class="color-picker-item">
+                            <label>Fill Color</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="fillColor" class="color-input" value="#3b82f6">
+                                <div class="color-preview" id="fillPreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="fill-options">
+                        <div class="fill-mode-selector">
+                            <button class="fill-mode-btn active" data-mode="solid" title="Solid Fill">
+                                <span class="fill-icon">⬛</span>
+                            </button>
+                            <button class="fill-mode-btn" data-mode="gradient" title="Gradient Fill">
+                                <span class="fill-icon">🌈</span>
+                            </button>
+                            <button class="fill-mode-btn" data-mode="pattern" title="Pattern Fill">
+                                <span class="fill-icon">🔳</span>
+                            </button>
+                        </div>
+                        
+                        <div class="opacity-control">
+                            <label>Fill Opacity</label>
+                            <div class="slider-container">
+                                <input type="range" id="fillOpacity" class="slider" min="0" max="100" value="100">
+                                <span id="fillOpacityValue">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="color-palette">
+                        <div class="palette-colors">
+                            <div class="palette-color" data-color="#ef4444" style="background: #ef4444;"></div>
+                            <div class="palette-color" data-color="#f97316" style="background: #f97316;"></div>
+                            <div class="palette-color" data-color="#eab308" style="background: #eab308;"></div>
+                            <div class="palette-color" data-color="#22c55e" style="background: #22c55e;"></div>
+                            <div class="palette-color" data-color="#06b6d4" style="background: #06b6d4;"></div>
+                            <div class="palette-color" data-color="#3b82f6" style="background: #3b82f6;"></div>
+                            <div class="palette-color" data-color="#8b5cf6" style="background: #8b5cf6;"></div>
+                            <div class="palette-color" data-color="#ec4899" style="background: #ec4899;"></div>
+                            <div class="palette-color" data-color="#000000" style="background: #000000;"></div>
+                            <div class="palette-color" data-color="#6b7280" style="background: #6b7280;"></div>
+                            <div class="palette-color" data-color="#d1d5db" style="background: #d1d5db;"></div>
+                            <div class="palette-color" data-color="#ffffff" style="background: #ffffff; border: 1px solid #e5e7eb;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-group">
+                <h3>Brush Settings</h3>
+                <div class="brush-controls">
+                    <div class="slider-container">
+                        <label>Brush Size</label>
+                        <input type="range" id="brushSize" class="slider" min="1" max="100" value="5">
+                        <span id="brushSizeValue">5px</span>
+                    </div>
+                    <div class="slider-container">
+                        <label>Brush Opacity</label>
+                        <input type="range" id="brushOpacity" class="slider" min="10" max="100" value="100">
+                        <span id="brushOpacityValue">100%</span>
+                    </div>
+                    <div class="brush-preview">
+                        <div id="brushPreviewCircle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-group">
+                <h3>Actions</h3>
+                <div class="action-grid">
+                    <button class="action-btn" id="undoBtn" title="Undo (Ctrl+Z)">
+                        <span class="action-icon">↶</span>
+                        <span class="action-label">Undo</span>
+                    </button>
+                    <button class="action-btn" id="redoBtn" title="Redo (Ctrl+Y)">
+                        <span class="action-icon">↷</span>
+                        <span class="action-label">Redo</span>
+                    </button>
+                    <button class="action-btn danger" id="clearBtn" title="Clear Canvas">
+                        <span class="action-icon">🗑️</span>
+                        <span class="action-label">Clear</span>
+                    </button>
+                    <button class="action-btn" id="fillCanvasBtn" title="Fill Canvas">
+                        <span class="action-icon">🎨</span>
+                        <span class="action-label">Fill All</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tool-group">
+                <h3>Import & Export</h3>
+                <div class="file-actions">
+                    <input type="file" id="imageInput" class="file-input" accept="image/*">
+                    <label for="imageInput" class="file-btn import-btn">
+                        <span class="file-icon">📁</span>
+                        <span class="file-label">Import Image</span>
+                    </label>
+                    <button class="file-btn export-btn" id="saveBtn">
+                        <span class="file-icon">💾</span>
+                        <span class="file-label">Save PNG</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Toolbar -->
+        <div class="mobile-toolbar">
+            <div class="mobile-toolbar-section">
+                <button class="mobile-tool-btn active" data-tool="pen" title="Pen">✏️</button>
+                <button class="mobile-tool-btn" data-tool="brush" title="Brush">🖌️</button>
+                <button class="mobile-tool-btn" data-tool="eraser" title="Eraser">🧽</button>
+                <button class="mobile-tool-btn" data-tool="fill" title="Fill">🪣</button>
+                <button class="mobile-tool-btn" data-tool="line" title="Line">📏</button>
+                <button class="mobile-tool-btn" data-tool="rectangle" title="Rectangle">⬜</button>
+                <button class="mobile-tool-btn" data-tool="circle" title="Circle">⭕</button>
+            </div>
+            
+            <div class="mobile-toolbar-section">
+                <div class="mobile-color-group">
+                    <input type="color" id="strokeColorMobile" class="mobile-color-input" value="#2563eb" title="Stroke">
+                    <input type="color" id="fillColorMobile" class="mobile-color-input" value="#3b82f6" title="Fill">
+                </div>
+                
+                <input type="range" id="brushSizeMobile" class="mobile-slider" min="1" max="50" value="5" title="Size">
+                
+                <button class="mobile-action-btn" id="undoBtnMobile" title="Undo">↶</button>
+                <button class="mobile-action-btn" id="redoBtnMobile" title="Redo">↷</button>
+                <button class="mobile-action-btn danger" id="clearBtnMobile" title="Clear">🗑️</button>
+                
+                <input type="file" id="imageInputMobile" class="file-input" accept="image/*">
+                <label for="imageInputMobile" class="mobile-action-btn" title="Import">📁</label>
+                <button class="mobile-action-btn success" id="saveBtnMobile" title="Save">💾</button>
+            </div>
+        </div>
+
+        <!-- Canvas Container -->
+        <div class="canvas-container">
+            <div class="canvas-header">
+                <div class="canvas-info">
+                    <span class="canvas-title">Your Imagination</span>
+                    <span class="canvas-status" id="canvasStatus">Ready</span>
+                </div>
+                <div class="canvas-controls">
+                    <button class="control-btn" id="gridToggle" title="Toggle Grid">
+                        <span class="control-icon">⊞</span>
+                    </button>
+                    <button class="control-btn" id="fullscreenBtn" title="Fullscreen">
+                        <span class="control-icon">⛶</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="canvas-wrapper">
+                <canvas id="canvas"></canvas>
+                <canvas id="gridCanvas" class="grid-canvas"></canvas>
+            </div>
+            
+            <!-- Zoom Controls -->
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="zoom-btn" id="zoomInBtn" title="Zoom In">+</button>
+                <button class="zoom-btn reset" id="resetZoomBtn" title="Reset Zoom">⌂</button>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="loading-spinner"></div>
+                <span class="loading-text">Processing...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Picker Modal -->
+    <div class="modal-overlay" id="colorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Advanced Color Picker</h3>
+                <button class="modal-close" id="closeColorModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="color-picker-advanced">
+                    <div class="color-wheel">
+                        <canvas id="colorWheel" width="200" height="200"></canvas>
+                    </div>
+                    <div class="color-sliders">
+                        <div class="slider-group">
+                            <label>Hue</label>
+                            <input type="range" id="hueSlider" min="0" max="360" value="0">
+                        </div>
+                        <div class="slider-group">
+                            <label>Saturation</label>
+                            <input type="range" id="satSlider" min="0" max="100" value="100">
+                        </div>
+                        <div class="slider-group">
+                            <label>Lightness</label>
+                            <input type="range" id="lightSlider" min="0" max="100" value="50">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
